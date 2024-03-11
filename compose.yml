@@ -1,0 +1,16 @@
+services:
+  flask-app:
+    build: flask-fnr
+    ports:
+      - "5000:5000"
+    depends_on:
+      - fastapi-app
+    develop:
+      watch:
+        - action: sync
+          path: ./flask-fnr
+          target: /flask-fnr
+  fastapi-app:
+    build: fastapi-fnr
+    ports:
+      - "8000:8000"
